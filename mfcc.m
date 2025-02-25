@@ -3,7 +3,7 @@ sound(x);
 
 fs = 12500
 
-% 20.48 milliseconds are contained in a block of 256 samples.
+% 20.48 milliseconds, contained in a block of 256 samples.
 
 time_axis = (0:length(x)-1) / fs;
 plot(time_axis, x);
