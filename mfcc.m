@@ -26,7 +26,7 @@ m = melfb_own(20, N, fs);
 plot(linspace(0, (fs/2), N/2 + 1), melfb_own(20, N, fs)'),
 title('Mel-spaced filterbank'), xlabel('Frequency (Hz)');
 
-mel_spectrum = m * abs(s);
+mel_spectrum = m * abs(s).^2;
 mfcc = dct(log10(mel_spectrum));
 imagesc(t, [1, 20], mfcc);
 axis xy;
