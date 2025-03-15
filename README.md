@@ -34,8 +34,15 @@ We cannot simply compare the waveforms of speaker samples to achieve good recogn
 
 ![mfcc-processor](https://github.com/user-attachments/assets/f52e9270-4773-45bc-8d6c-0f3f81f75e49)
 
-The processing was done using frame blocking of varying lengths N = 128,256,512 and M = round(N/3) with an overlap of N - M and a hamming window of length N. We use the signal frames to construct a periodogram.
-Then, we perform mel warping on each frame of the signal. We filter each frame using 20 triangle bandpass filters spaced according to the mel-frequency scale. Next, we add all the signal values for a particular filter, resulting in 20 coefficients.
-Lastly, we convert the mel coefficients back to time using the Discrete Cosine Transform (DCT). The resulting coefficients are known as the Mel-Frequency-Cepstrum-Coefficients.
+The processing was done using frame blocking of varying lengths N = 128,256,512 and M = round(N/3) with an overlap of N - M and a hamming window of length N. We use the signal frames to construct a periodogram. When constructing the periodogram, we can visualize how the choice of N can affect frequency resolution:
+![image (2)](https://github.com/user-attachments/assets/abd3089b-7c0d-4008-8c8e-88a11da70359)
+
+Visualizing the periodograms can also reinforce why observing the speech samples in the frequency domain provides a far superior way to speaker identification than time-domain analysis as we as humans can even visually begin to pick out differences in speech. For example, let us compare the periodograms of four different spoken words: "zero", "five", "eleven", and "twelve":
+
+![image (5)](https://github.com/user-attachments/assets/4c41409c-998c-40b6-9d67-515e56e994cb)
+
+Then, we perform mel warping on each frame of the signal. We filter each frame using 20 triangle bandpass filters spaced according to the mel-frequency scale, as can be seen below:
+![MelSpacedFilterBank](https://github.com/user-attachments/assets/bc7dae71-5d45-40e7-a8eb-eed19b86fbcd)
+Next, we add all the signal values for a particular filter, resulting in 20 coefficients. Lastly, we convert the mel coefficients back to time using the Discrete Cosine Transform (DCT). The resulting coefficients are known as the Mel-Frequency-Cepstrum-Coefficients.
 
 
