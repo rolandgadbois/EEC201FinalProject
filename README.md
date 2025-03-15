@@ -30,7 +30,7 @@ Finally, we cut out the zero samples, which focuses our classification on only t
  
 
 ## Feature Extraction - MFCC
-We cannot simply compare the waveforms of speaker samples to achieve good recognition results. The speaker may repeat the work more quickly, speak louder, or emphasize different parts of the word, resulting in different waveforms. Therefore, we will use an algorithm to extract the key features of each speaker sample. In this project, we use MFCC to extract valuable features for speaker recognition. The Mel-Frequency spectrum is a frequency scale that is linear from 0 - 1 kHz and logarithmically spaced above 1 kHz. It is meant to mimic the way human ears respond to different frequencies. Below is a diagram showing the datapath for extracting MFCC.
+We cannot simply compare the waveforms of speaker samples to achieve good recognition results. The speaker may repeat the word more quickly, speak louder, or emphasize different parts of the word, resulting in different waveforms. Therefore, we will use an algorithm to extract the key features of each speaker sample. In this project, we use MFCC to extract valuable features for speaker recognition. The Mel-Frequency spectrum is a frequency scale that is linear from 0 - 1 kHz and logarithmically spaced above 1 kHz. It is meant to mimic the way human ears respond to different frequencies. Below is a diagram showing the datapath for extracting MFCC.
 
 ![mfcc-processor](https://github.com/user-attachments/assets/f52e9270-4773-45bc-8d6c-0f3f81f75e49)
 
@@ -41,8 +41,52 @@ Visualizing the periodograms can also reinforce why observing the speech samples
 
 ![image (5)](https://github.com/user-attachments/assets/4c41409c-998c-40b6-9d67-515e56e994cb)
 
+Words are comprised of voiced and unvoiced sounds. Voiced sounds are prominent in the spectrogram where as unvoiced sounds show up as white noise (flat spectrum). We can see that in the "Zero" spectrogram, there are high frequencies at the beginning of the word and low frequencies at the end, corresponding to the "e" and "o" voiced sounds. In the "five" spectrogram, we see in the beginning that the spectrum is low and flat corresponding to the unvoiced sound "f". We then see one prominet section of the sepctrogram corresponding to the "i" voiced sound. In the "eleven" spectrogram, we don't see white noise sections because the word mostly comprises voiced sounds. In the "twelve" spectrogram, we see similarities with "five" because both words start with unvoiced sounds.
+
 Then, we perform mel warping on each frame of the signal. We filter each frame using 20 triangle bandpass filters spaced according to the mel-frequency scale, as can be seen below:
 ![MelSpacedFilterBank](https://github.com/user-attachments/assets/bc7dae71-5d45-40e7-a8eb-eed19b86fbcd)
-Next, we add all the signal values for a particular filter, resulting in 20 coefficients. Lastly, we convert the mel coefficients back to time using the Discrete Cosine Transform (DCT). The resulting coefficients are known as the Mel-Frequency-Cepstrum-Coefficients.
+
+Next, we add all the signal values in the frequency domain for a particular filter, resulting in 20 coefficients. Lastly, we take the log of the magnitude squared of the coefficients in frequency and convert them back to time using the Discrete Cosine Transform (DCT). The resulting coefficients are known as the Mel-Frequency-Cepstrum-Coefficients.
+
+## Vector Quantization using the LBG Algorithm
+The LBG algorithm finds clusters of data in an N dimensional space. We use this algorithm to cluster our data for classification. Each cluster is defined by a centroid, and a set of centroids constitute a "code" in a "codebook". Each speaker signal has been divided into frames from which we extracted MFCCs. We use the MFCCs as points in our vector quantization. We recognize a particular speaker by calculating the average distance of each set of points from each speaker to each code and choosing the code with the smallest average distance. That code corresponds to the selected speaker. Here's an example of clustering in two dimensions.
+
+![image](https://github.com/user-attachments/assets/3400faac-69eb-47aa-99a3-d348bd86e2bf)
+
+## Results
+We tested our speaker recognition across multiple data sets. Each data set was used twice, once for training and once for testing. We used data sets of speakers saying the words "Zero", "Five" and "Eleven".
+The first data set we examine is "Zero". Here's a table summarizing our accuracy results with different values for N (the frame length) and M (the codebook size).
+
+| N\M        |   8      |   16     |   32     |  64     | 
+|------------|----------|----------|----------|---------|
+| 128        |  100%    |  100%    |  100%    | 100%    |
+| 256        |  100%    |  100%    |  100%    | 100%    |
+| 512        |  100%    |  87.5%   |  87.5%   | -       |
+
+The accuracy for "Zero" without pre-processing is 75%. Therefore, the pre-processing steps we took significantly helped our accuracy, so the subsequent data was taken with pre-processing.
+
+Here are the results for "Five".
+
+| N\M        |   8      |   16     |   32     |  64     | 
+|------------|----------|----------|----------|---------|
+| 128        |  87.0%   |  87.0%   |  91.3%   | 91.3%   |
+| 256        |  95.6%   |  95.6%   |  95.6%   | 95.6%   |
+| 512        |  95.6%   |  95.6%   |  95.6%   | 95.6%   |
+
+Here are the results for "Eleven".
+
+| N\M        |   8      |   16     |   32     |  64     | 
+|------------|----------|----------|----------|---------|
+| 128        |  78.3%   |  87.0%   |  87.0%   | 87.0%   |
+| 256        |  100%    |  100%    |  100%    | 100%    |
+| 512        |  100%    |  100%    |  100%    | 100%    |
+
+We suspect we achieved lower accuracies for "Five" compared to "Zero" and "Eleven" because "Five" only has one voice sound where whereas "Zero" and "Eleven" have two. Voiced sounds give us more useful features for the speaker and, therefore the recognition is better.
+
+
+
+
+
+
 
 
