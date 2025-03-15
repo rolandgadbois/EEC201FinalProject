@@ -1,4 +1,4 @@
-# EEC 201 WQ 24 Final Project: Speaker Recognition
+# EEC 201 WQ 25 Final Project: Speaker Recognition
 
 ## Team Name: The FFT Fighters
 ## Members: Roland Gadbois and Adam Ashkenazi
