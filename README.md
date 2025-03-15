@@ -54,8 +54,9 @@ The LBG algorithm finds clusters of data in an N dimensional space. We use this 
 ![image](https://github.com/user-attachments/assets/3400faac-69eb-47aa-99a3-d348bd86e2bf)
 
 ## Results
-We tested our speaker recognition across multiple data sets. Each data set was used twice, once for training and once for testing. We used data sets of speakers saying the words "Zero", "Five" and "Eleven".
-The first data set we examine is "Zero". Here's a table summarizing our accuracy results with different values for N (the frame length) and M (the codebook size).
+We tested our speaker recognition across multiple data sets. Each data set was used twice, once for training and once for testing. We used data sets of speakers saying the words "Zero", "Five", "Eleven", and "Twelve". We were given a dataset of speakers saying "Zero" to use as a baseline. The "Five" and "Eleven" datasets are samples that were recorded from students in class. We were given additional data from last year's class of speakers saying "Zero" and "Twelve".
+
+The first data set we examine is the baseline data of speakers saying "Zero" that was given in the assignment. Here's a table summarizing our accuracy results with different values for N (the frame length) and M (the codebook size).
 
 | N\M        |   8      |   16     |   32     |  64     | 
 |------------|----------|----------|----------|---------|
@@ -63,9 +64,9 @@ The first data set we examine is "Zero". Here's a table summarizing our accuracy
 | 256        |  100%    |  100%    |  100%    | 100%    |
 | 512        |  100%    |  87.5%   |  87.5%   | -       |
 
-The accuracy for "Zero" without pre-processing is 75%. Therefore, the pre-processing steps we took significantly helped our accuracy, so the subsequent data was taken with pre-processing.
+The accuracy for the baseline data without pre-processing is 75%. Therefore, the pre-processing steps we took significantly helped our accuracy, so the subsequent data was taken with pre-processing.
 
-Here are the results for "Five".
+Here are the results for "Five" from last year's class.
 
 | N\M        |   8      |   16     |   32     |  64     | 
 |------------|----------|----------|----------|---------|
@@ -73,7 +74,7 @@ Here are the results for "Five".
 | 256        |  95.6%   |  95.6%   |  95.6%   | 95.6%   |
 | 512        |  95.6%   |  95.6%   |  95.6%   | 95.6%   |
 
-Here are the results for "Eleven".
+Here are the results for "Eleven" from last year's class.
 
 | N\M        |   8      |   16     |   32     |  64     | 
 |------------|----------|----------|----------|---------|
@@ -81,7 +82,23 @@ Here are the results for "Eleven".
 | 256        |  100%    |  100%    |  100%    | 100%    |
 | 512        |  100%    |  100%    |  100%    | 100%    |
 
-We suspect we achieved lower accuracies for "Five" compared to "Zero" and "Eleven" because "Five" only has one voice sound where whereas "Zero" and "Eleven" have two. Voiced sounds give us more useful features for the speaker and, therefore the recognition is better.
+Here are the results for "Zero" from this year's class.
+
+| N\M        |   8      |   16     |   32     |  64     | 
+|------------|----------|----------|----------|---------|
+| 128        |  83.3%   |  83.3%   |  88.9%   | 94.4%   |
+| 256        |  88.9%   |  94.4%   |  100%    | 100%    |
+| 512        |  88.9%   |  100%    |  100%    | 100%    |
+
+Here are the results for "Twelve" from this year's class.
+
+| N\M        |   8      |   16     |   32     |  64     | 
+|------------|----------|----------|----------|---------|
+| 128        |  88.9%   |  94.4%   |  94.4%   | 88.9%   |
+| 256        |  94.4%   |  100%    |  100%    | 100%    |
+| 512        |  94.4%   |  100%    |  100%    | 100%    |
+
+We suspect we achieved lower accuracies for "Five" compared to "Zero" and "Eleven" because "Five" only has one voiced sound, whereas "Zero" and "Eleven" have two. Voiced sounds give us more useful features for the speaker and, therefore, the recognition is better. The accuracy for "Twelve" is quite high for the same reason.
 
 
 
