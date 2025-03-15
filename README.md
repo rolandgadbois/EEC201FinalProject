@@ -56,6 +56,8 @@ The LBG algorithm finds clusters of data in an N dimensional space. We use this 
 ## Results
 We tested our speaker recognition across multiple data sets. Each data set was used twice, once for training and once for testing. We used data sets of speakers saying the words "Zero", "Five", "Eleven", and "Twelve". We were given a dataset of speakers saying "Zero" to use as a baseline. The "Five" and "Eleven" datasets are samples that were recorded from students in class. We were given additional data from last year's class of speakers saying "Zero" and "Twelve".
 
+Before building and testing our algorithm, we tried to recognize the speakers ourselves from the baseline data. The highest accuracy we achieved was 25%.
+
 The first data set we examine is the baseline data of speakers saying "Zero" that was given in the assignment. Here's a table summarizing our accuracy results with different values for N (the frame length) and M (the codebook size).
 
 | N\M        |   8      |   16     |   32     |  64     | 
@@ -100,10 +102,7 @@ Here are the results for "Twelve" from this year's class.
 
 We suspect we achieved lower accuracies for "Five" compared to "Zero" and "Eleven" because "Five" only has one voiced sound, whereas "Zero" and "Eleven" have two. Voiced sounds give us more useful features for the speaker and, therefore, the recognition is better. The accuracy for "Twelve" is quite high for the same reason.
 
-
-
-
-
-
+## Contributions
+Roland and I met after class several times to break down the tasks and algorithm and record our accuracies. Roland wrote most of the Matlab code because he was familiar with the language, and I wrote more of the report.
 
 
