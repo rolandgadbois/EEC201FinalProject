@@ -138,6 +138,14 @@ We suspect we achieved lower accuracies for "Five" compared to "Zero" and "Eleve
 
 Based on the above gridsearch, the optimal hyperparameters for our classification model would be a frame blocking of length N = 256 and codebook of size M = 32. While multiple models achieved 100% accuracy across the majority of tests, an optimal model is one that also can run quickly for near real-time classification. Therefore, by choosing a larger length for the frame block (N = 256), we reduce the number of MFCC coefficients we have since we have less frames, making clustering easier. Similarly, by choosing a smaller codebook size (M = 32), we reduce the time for classification as there are less codes we need to compare each of our test samples against.
 
+Finally, we can compare this optimal model against a new test set generated using notch filters. Using the filter with frame block length N = 256, and codebook size M = 32, and testing the accuracy on the "Five" test set passed through notch filters centered at frequencies f0 = 60, 120, 180 Hz and quality factor Q = 35, we can analyze the robustness of our model:
+
+|   60 Hz  |   120 Hz |   180 Hz |
+|----------|----------|----------|
+|  95.6%   |  95.6%   |  95.6%   |
+
+The fact that our accuracy remains consistent across the newly generated test set supports the robustness of our model and that it can still identify speakers even in the presence of noise.
+
 ## Contributions
 Roland and I met after class several times to break down the tasks and algorithm and record our accuracies. Roland wrote most of the Matlab code because he was familiar with the language, and I wrote more of the report.
 
