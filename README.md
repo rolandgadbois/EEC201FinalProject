@@ -34,7 +34,7 @@ We cannot simply compare the waveforms of speaker samples to achieve good recogn
 
 ![mfcc-processor](https://github.com/user-attachments/assets/f52e9270-4773-45bc-8d6c-0f3f81f75e49)
 
-The processing was done using frame blocking of varying lengths N = 128,256,512 and M = round(N/3) with an overlap of N - M and a hamming window of length N. We use the signal frames to construct a periodogram. When constructing the periodogram, we can visualize how the choice of N can affect frequency resolution:
+The processing was done using frame blocking of varying lengths N = 128, 256, 512 and M = round(N/3) with an overlap of N - M and a hamming window of length N. We use the signal frames to construct a periodogram. When constructing the periodogram, we can visualize how the choice of N can affect frequency resolution:
 ![image (2)](https://github.com/user-attachments/assets/abd3089b-7c0d-4008-8c8e-88a11da70359)
 
 Visualizing the periodograms can also reinforce why observing the speech samples in the frequency domain provides a far superior way to speaker identification than time-domain analysis as we as humans can even visually begin to pick out differences in speech. For example, let us compare the periodograms of four different spoken words: "zero", "five", "eleven", and "twelve":
@@ -49,9 +49,19 @@ Then, we perform mel warping on each frame of the signal. We filter each frame u
 Next, we add all the signal values in the frequency domain for a particular filter, resulting in 20 coefficients. Lastly, we take the log of the magnitude squared of the coefficients in frequency and convert them back to time using the Discrete Cosine Transform (DCT). The resulting coefficients are known as the Mel-Frequency-Cepstrum-Coefficients.
 
 ## Vector Quantization using the LBG Algorithm
-The LBG algorithm finds clusters of data in an N dimensional space. We use this algorithm to cluster our data for classification. Each cluster is defined by a centroid, and a set of centroids constitute a "code" in a "codebook". Each speaker signal has been divided into frames from which we extracted MFCCs. We use the MFCCs as points in our vector quantization. We recognize a particular speaker by calculating the average distance of each set of points from each speaker to each code and choosing the code with the smallest average distance. That code corresponds to the selected speaker. Here's an example of clustering in two dimensions.
+The LBG algorithm finds clusters of data in an N dimensional space. We use this algorithm to find clusters unique to each speaker in our dataset for classification. Each cluster is defined by a centroid, and a set of centroids constitute a "code" in a "codebook". Each speaker signal has been divided into frames from which we extracted MFCCs. We use the MFCCs from a given speaker across all their frames in order to learn a codebook in training. We then recognize a particular speaker by calculating the average distance of each set of points from each speaker to each code and choosing the code with the smallest average distance since each code corresponds to a unique speaker. Here's an example of how clustering would look in two dimensions.
 
 ![image](https://github.com/user-attachments/assets/3400faac-69eb-47aa-99a3-d348bd86e2bf)
+
+When analyzing the clusters for a given speaker, it becomes significantly tricker to visualize because each speech sample is defined by its 19 MFCCs (since we discard the first coefficient leaving 20 - 1), so we are clustering in 19-dimensional space. We can look at a 2-dimensional slice of this 19-dimensional space with the centroids marked by 'X' and the MFCCs marked by 'o':
+
+![ClusteringCodebookSize4](https://github.com/user-attachments/assets/5073930a-d4c3-4513-849b-72ef163a2fc6)
+
+We can also visualize a 3-dimensional section of the 19-dimensional clustering space:
+
+![3DClusteringCodebookSize4](https://github.com/user-attachments/assets/85a735ac-d686-4192-8700-40e8065d917b)
+
+We can of course notice that the clusters in 19-dimensional space are not as exact as they were in the 2-dimensional example; there are some points in the space that would seem like they belong to other clusters. This discrepancy can be attributed to the fact that we are not visualizing the entire 19-dimensional space, so while some points may seem closer to others in a 2-dimensional or 3-dimensional viewing of the space, in reality, they are actually much farther and belong to another cluster entirely, which we simply cannot visualize.
 
 ## Results
 We tested our speaker recognition across multiple data sets. Each data set was used twice, once for training and once for testing. We used data sets of speakers saying the words "Zero", "Five", "Eleven", and "Twelve". We were given a dataset of speakers saying "Zero" to use as a baseline. The "Five" and "Eleven" datasets are samples that were recorded from students in class. We were given additional data from last year's class of speakers saying "Zero" and "Twelve".
