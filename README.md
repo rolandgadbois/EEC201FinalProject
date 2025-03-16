@@ -74,9 +74,25 @@ The first data set we examine is the baseline data of speakers saying "Zero" tha
 |------------|----------|----------|----------|---------|
 | 128        |  100%    |  100%    |  100%    | 100%    |
 | 256        |  100%    |  100%    |  100%    | 100%    |
-| 512        |  100%    |  87.5%   |  87.5%   | -       |
+| 512        |  100%    |  87.5%   |  87.5%   | 87.5%   |
 
 The accuracy for the baseline data without pre-processing is 75%. Therefore, the pre-processing steps we took significantly helped our accuracy, so the subsequent data was taken with pre-processing.
+
+We can also look at the results for the codebook trained exclusively on the "Zero" samples from last year's class and its accuracy in classifying a test set consisting of those same speakers.
+
+| N\M        |   8      |   16     |   32     |  64     | 
+|------------|----------|----------|----------|---------|
+| 128        |  83.3%   |  83.3%   |  88.9%   | 94.4%   |
+| 256        |  88.9%   |  94.4%   |  100%    | 100%    |
+| 512        |  88.9%   |  100%    |  100%    | 100%    |
+
+Finally, if we combine all the "Zero" samples (both the baseline and samples from last year's class) for a total of 29 speakers in the training set and 26 speakers in the test set, we achieve the following accuracies.
+
+| N\M        |   8      |   16     |   32     |  64     | 
+|------------|----------|----------|----------|---------|
+| 128        |  88.5%   |  88.5%   |  92.3%   | 96.2%   |
+| 256        |  92.3%   |  96.2%   |  100%    | 100%    |
+| 512        |  88.5%   |  96.2%   |  96.2%   | 100%    |
 
 Here are the results for "Five" from this year's class.
 
@@ -94,13 +110,6 @@ Here are the results for "Eleven" from this year's class.
 | 256        |  100%    |  100%    |  100%    | 100%    |
 | 512        |  100%    |  100%    |  100%    | 100%    |
 
-Here are the results for "Zero" from last year's class.
-
-| N\M        |   8      |   16     |   32     |  64     | 
-|------------|----------|----------|----------|---------|
-| 128        |  83.3%   |  83.3%   |  88.9%   | 94.4%   |
-| 256        |  88.9%   |  94.4%   |  100%    | 100%    |
-| 512        |  88.9%   |  100%    |  100%    | 100%    |
 
 Here are the results for "Twelve" from last year's class.
 
