@@ -78,7 +78,7 @@ The first data set we examine is the baseline data of speakers saying "Zero" tha
 
 The accuracy for the baseline data without pre-processing is 75%. Therefore, the pre-processing steps we took significantly helped our accuracy, so the subsequent data was taken with pre-processing.
 
-Here are the results for "Five" from last year's class.
+Here are the results for "Five" from this year's class.
 
 | N\M        |   8      |   16     |   32     |  64     | 
 |------------|----------|----------|----------|---------|
@@ -86,7 +86,7 @@ Here are the results for "Five" from last year's class.
 | 256        |  95.6%   |  95.6%   |  95.6%   | 95.6%   |
 | 512        |  95.6%   |  95.6%   |  95.6%   | 95.6%   |
 
-Here are the results for "Eleven" from last year's class.
+Here are the results for "Eleven" from this year's class.
 
 | N\M        |   8      |   16     |   32     |  64     | 
 |------------|----------|----------|----------|---------|
@@ -94,7 +94,7 @@ Here are the results for "Eleven" from last year's class.
 | 256        |  100%    |  100%    |  100%    | 100%    |
 | 512        |  100%    |  100%    |  100%    | 100%    |
 
-Here are the results for "Zero" from this year's class.
+Here are the results for "Zero" from last year's class.
 
 | N\M        |   8      |   16     |   32     |  64     | 
 |------------|----------|----------|----------|---------|
@@ -102,7 +102,7 @@ Here are the results for "Zero" from this year's class.
 | 256        |  88.9%   |  94.4%   |  100%    | 100%    |
 | 512        |  88.9%   |  100%    |  100%    | 100%    |
 
-Here are the results for "Twelve" from this year's class.
+Here are the results for "Twelve" from last year's class.
 
 | N\M        |   8      |   16     |   32     |  64     | 
 |------------|----------|----------|----------|---------|
@@ -111,6 +111,8 @@ Here are the results for "Twelve" from this year's class.
 | 512        |  94.4%   |  100%    |  100%    | 100%    |
 
 We suspect we achieved lower accuracies for "Five" compared to "Zero" and "Eleven" because "Five" only has one voiced sound, whereas "Zero" and "Eleven" have two. Voiced sounds give us more useful features for the speaker and, therefore, the recognition is better. The accuracy for "Twelve" is quite high for the same reason.
+
+Based on the above gridsearch, the optimal hyperparameters for our classification model would be a frame blocking of length N = 512 and codebook of size M = 16. While multiple models achieved 100% accuracy across the majority of tests, an optimal model is one that also can run quickly for near real-time classification. Therefore, by choosing a larger length for the frame block (N = 512), we reduce the number of MFCC coefficients we have since we have less frames, making clustering easier. Similarly, by choosing a smaller codebook size (M = 16), we reduce the time for classification as there are less codes we need to compare each of our test samples against.
 
 ## Contributions
 Roland and I met after class several times to break down the tasks and algorithm and record our accuracies. Roland wrote most of the Matlab code because he was familiar with the language, and I wrote more of the report.
