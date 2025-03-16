@@ -94,7 +94,7 @@ Finally, if we combine all the "Zero" samples (both the baseline and samples fro
 | 256        |  92.3%   |  96.2%   |  100%    | 100%    |
 | 512        |  88.5%   |  96.2%   |  96.2%   | 100%    |
 
-Here are the results for "Five" from this year's class.
+We can also look at the results for the "Five" audio samples from this year's class.
 
 | N\M        |   8      |   16     |   32     |  64     | 
 |------------|----------|----------|----------|---------|
@@ -102,7 +102,7 @@ Here are the results for "Five" from this year's class.
 | 256        |  95.6%   |  95.6%   |  95.6%   | 95.6%   |
 | 512        |  95.6%   |  95.6%   |  95.6%   | 95.6%   |
 
-Here are the results for "Eleven" from this year's class.
+As well as the results for the "Eleven" audio samples from this year's class.
 
 | N\M        |   8      |   16     |   32     |  64     | 
 |------------|----------|----------|----------|---------|
@@ -110,8 +110,23 @@ Here are the results for "Eleven" from this year's class.
 | 256        |  100%    |  100%    |  100%    | 100%    |
 | 512        |  100%    |  100%    |  100%    | 100%    |
 
+If we train our classifier on both the "Five" samples and "Eleven" samples from this year's class, we can measure its accuracy identifying test samples using two different metrics: word identification (whether "Five" or "Eleven" was said) and speaker identification. Firstly, we give the classifier's accuracy for word identification on the audio samples from this year's class:
 
-Here are the results for "Twelve" from last year's class.
+| N\M        |   8      |   16     |   32     |  64     | 
+|------------|----------|----------|----------|---------|
+| 128        |  93.5%   |  93.5%   |  93.5%   | 97.8%   |
+| 256        |  97.8%   |  100%    |  100%    | 100%    |
+| 512        |  100%    |  100%    |  100%    | 100%    |
+
+Next, we give the classifier's accuracy on speaker identification on the audio samples from this year's class:
+
+| N\M        |   8      |   16     |   32     |  64     | 
+|------------|----------|----------|----------|---------|
+| 128        |  87.0%   |  89.1%   |  89.1%   | 89.1%   |
+| 256        |  97.8%   |  97.8%   |  97.8%   | 97.8%   |
+| 512        |  97.8%   |  97.8%   |  97.8%   | 97.8%   |
+
+It deserves mentioning that the majority of the time the program inaccurately predicted the word spoken, it misclassified the sample with the speaker's other audio sample (i.e., if it predicted that "Eleven" was spoken instead of "Five", the majority of the time it was correctly identifying the speaker). Similar as to before, here are the results for "Twelve" from last year's class.
 
 | N\M        |   8      |   16     |   32     |  64     | 
 |------------|----------|----------|----------|---------|
