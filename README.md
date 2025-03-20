@@ -146,6 +146,10 @@ Finally, we can compare this optimal model against a new test set generated usin
 
 The fact that our accuracy remains consistent across the newly generated test set supports the robustness of our model and that it can still identify speakers even in the presence of noise.
 
+## Usage
+
+To use our speech recognition model, you can either use the MATLAB live code (SpeakerRecognition.mlx) or the GUI (EEC201FinalProject.mlapp). We personally would recommend to use the GUI as it is more interactive and easier to use; just ensure you download all the code included in the GitHub as the app relies on functions like LBG.m and mfcc.m
+
 ## Contributions
 Roland and I met after class several times to break down the tasks and algorithm and record our accuracies. Roland wrote most of the Matlab code because he was familiar with the language, and I wrote more of the report.
 
