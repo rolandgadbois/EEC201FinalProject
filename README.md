@@ -150,7 +150,7 @@ The fact that our accuracy remains consistent across the newly generated test se
 
 To use our speech recognition model, you can either use the MATLAB live code (SpeakerRecognition.mlx) or the GUI (EEC201FinalProject.mlapp). We personally would recommend to use the GUI as it is more interactive and easier to use; just ensure you download all the code included in the GitHub as the app relies on functions like LBG.m and mfcc.m. An example frame from our GUI is shown below:
 
-<img width="482" alt="EEC201FinalProjectApp" src="https://github.com/user-attachments/assets/4cd0d493-35f4-4105-ad60-ed6ca650596f" />
+<img width="482" alt="EEC201FinalProjectAppUpdated" src="https://github.com/user-attachments/assets/80ee1f51-e59a-4cde-ba1b-ff0339ab8dd6" />
 
 A note on usage. After loading either the training or test datasets, the "Plot" button will become enabled, whereupon after selecting a file name in the top right, the desired visualization ("Time Specta" or "Spectrogram"), and the desired level of processing, the requested figure will be given in the bottom right corner of the app. After loading both the training and test datasets, the "Predict" button will become enabled, which upon pressing it, will auto-populate the table below the button with the model's predictions. Classification can take some time, so a pop-up window will display with the model's accuracy once it has finished. There are two text-edits that allow you to change N, the length of the window frame, and M, the codebook size of the model. Finally, there is a "Reset" button, that will clear the saved training and test datasets, allowing for the application to be re-run again for new samples.
 
